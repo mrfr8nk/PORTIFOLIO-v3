@@ -1,0 +1,1282 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darrell Mucheri | Developer & Programmer</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇿🇼</text></svg>">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #89CFF0;
+            --secondary: #B0E0E6;
+            --dark: #0F172A;
+            --light: #F8FAFC;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --dark-glass: rgba(15, 23, 42, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.3s ease;
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #E0F7FA 0%, #B3E5FC 100%);
+            color: var(--dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Glassmorphism components */
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .glass:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(180deg);
+            box-shadow: 0 0 20px rgba(137, 207, 240, 0.6);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn span {
+            width: 30px;
+            height: 3px;
+            background: var(--light);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-image {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 4px solid rgba(137, 207, 240, 0.3);
+            margin: 0 auto 30px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 5px 15px rgba(137, 207, 240, 0.4));
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(137, 207, 240, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(137, 207, 240, 0.6);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-outline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn-outline:hover::before {
+            left: 0;
+        }
+
+        .btn-outline:hover {
+            color: white;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .about-card {
+            padding: 30px;
+        }
+
+        .about-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(137, 207, 240, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .about-icon i {
+            font-size: 30px;
+            color: var(--primary);
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .about-card p {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-card {
+            padding: 25px;
+            position: relative;
+        }
+
+        .skill-card img {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 25px;
+            right: 25px;
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .skill-bar {
+            background: rgba(137, 207, 240, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            height: 12px;
+            margin-top: 15px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0;
+            border-radius: 10px;
+            transition: width 1.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-image: linear-gradient(
+                -45deg,
+                rgba(255, 255, 255, 0.2) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.2) 50%,
+                rgba(255, 255, 255, 0.2) 75%,
+                transparent 75%,
+                transparent
+            );
+            z-index: 1;
+            background-size: 20px 20px;
+            animation: move 2s linear infinite;
+            border-radius: 10px;
+        }
+
+        .skill-percent {
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 8px;
+            text-align: right;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .project-tech img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-description {
+            margin-bottom: 20px;
+            opacity: 0.9;
+            flex-grow: 1;
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-buttons a {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* Achievements Section */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .achievement-card {
+            padding: 30px;
+        }
+
+        .achievement-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(137, 207, 240, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .achievement-icon i {
+            font-size: 30px;
+            color: var(--primary);
+        }
+
+        .achievement-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .achievement-card p {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            background: transparent;
+            border: 1px solid rgba(137, 207, 240, 0.3);
+            color: inherit;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(137, 207, 240, 0.3);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(137, 207, 240, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 0 30px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 5px 15px rgba(137, 207, 240, 0.4);
+        }
+
+        .copyright {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 20px 20px; }
+        }
+
+        /* Light mode adjustments */
+        .light-mode .glass {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .light-mode .social-icon {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu .nav-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .mobile-menu .nav-links a {
+            font-size: 1.5rem;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        /* Utility classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-30 {
+            margin-bottom: 30px;
+        }
+
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">Darrell M</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#achievements">Achievements</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </div>
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="nav-links">
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#skills" class="mobile-nav-link">Skills</a>
+            <a href="#projects" class="mobile-nav-link">Projects</a>
+            <a href="#achievements" class="mobile-nav-link">Achievements</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+            <a href="https://github.com/mrfrank-ofc" target="_blank" class="mobile-nav-link">GitHub</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-image">
+                <img src="https://i.postimg.cc/XYwmpCxk/subzero-bot.jpg" alt="Darrell Mucheri">
+            </div>
+            <h1 class="hero-title"><span id="typing-text"></span></h1>
+            <p class="hero-subtitle">Developer & Programmer</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> View Projects
+                </a>
+                <a href="#contact" class="btn btn-outline">
+                    <i class="fas fa-paper-plane"></i> Contact Me
+                </a>
+            </div>
+            <div class="mt-30">
+                <a href="https://github.com/mrfrank-ofc/DARRELL-CV/archive/62ce215051d52786068e6e11f3faeb346d2d2977.zip" download class="btn btn-outline">
+                    <i class="fas fa-download"></i> Download CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="glass about-card fade-in">
+                    <div class="about-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Who Am I?</h3>
+                    <p>I'm Darrell Mucheri, a passionate frontend developer from Zimbabwe. I specialize in creating modern, responsive, and user-friendly web applications. My goal is to solve real-world problems through clean and efficient code.</p>
+                </div>
+                <div class="glass about-card fade-in">
+                    <div class="about-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>My Vision</h3>
+                    <p>To revolutionize the digital landscape by building innovative solutions that enhance user experiences and drive business growth. I believe in continuous learning and pushing the boundaries of what's possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="bg-light">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-grid">
+                <div class="glass skill-card fade-in">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML">
+                    <h3>HTML</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-percent="95%"></div>
+                    </div>
+                    <div class="skill-percent">0%</div>
+                </div>
+                <div class="glass skill-card fade-in">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS">
+                    <h3>CSS</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-percent="79%"></div>
+                    </div>
+                    <div class="skill-percent">0%</div>
+                </div>
+                <div class="glass skill-card fade-in">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
+                    <h3>JavaScript</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-percent="85%"></div>
+                    </div>
+                    <div class="skill-percent">0%</div>
+                </div>
+                <div class="glass skill-card fade-in">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React">
+                    <h3>React</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-percent="80%"></div>
+                    </div>
+                    <div class="skill-percent">0%</div>
+                </div>
+                <div class="glass skill-card fade-in">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
+                    <h3>Node.js</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-percent="75%"></div>
+                    </div>
+                    <div class="skill-percent">0%</div>
+                </div>
+                <div class="glass skill-card fade-in">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python">
+                    <h3>Python</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-percent="70%"></div>
+                    </div>
+                    <div class="skill-percent">0%</div>
+                </div>
+                <div class="glass skill-card fade-in">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="Tailwind CSS">
+                    <h3>Tailwind CSS</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-percent="85%"></div>
+                    </div>
+                    <div class="skill-percent">0%</div>
+                </div>
+                <div class="glass skill-card fade-in">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg" alt="Bootstrap">
+                    <h3>Bootstrap</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-percent="80%"></div>
+                    </div>
+                    <div class="skill-percent">0%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <!-- Subzero Nodes -->
+                <div class="glass project-card fade-in">
+                    <div class="project-image">
+                        <img src="https://files.catbox.moe/sxseo0.jpg" alt="Subzero Nodes">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tech">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML">
+                            <img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" alt="Docker">
+                        </div>
+                        <h3 class="project-title">Subzero Nodes</h3>
+                        <p class="project-description">Premium WhatsApp bot hosting service with 24/7 uptime, advanced features, and easy deployment for your WhatsApp automation needs.</p>
+                        <div class="project-buttons">
+                            <a href="https://subzeronodes.gleeze.com" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-globe"></i> Visit Site
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subzero AI -->
+                <div class="glass project-card fade-in">
+                    <div class="project-image">
+                        <img src="https://files.catbox.moe/sxseo0.jpg" alt="Subzero AI">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tech">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML">
+                            <img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" alt="Docker">
+                        </div>
+                        <h3 class="project-title">Subzero AI</h3>
+                        <p class="project-description">A cutting-edge WhatsApp bot designed to automate tasks, provide real-time updates, and enhance user interactions with AI-powered features.</p>
+                        <div class="project-buttons">
+                            <a href="https://tinyurl.com/subzero-md" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-eye"></i> Demo
+                            </a>
+                            <a href="https://github.com/mrfrankofcc/SUBZERO-MD" class="btn btn-outline" target="_blank">
+                                <i class="fas fa-code"></i> Source
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- E-Commerce Store -->
+                <div class="glass project-card fade-in">
+                    <div class="project-image">
+                        <img src="https://files.catbox.moe/43b9ax.jpg" alt="E-Commerce Store">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tech">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML">
+                        </div>
+                        <h3 class="project-title">E-Commerce Store</h3>
+                        <p class="project-description">A fully functional online store built with React and Node.js, featuring product listings, a shopping cart, and secure payment integration.</p>
+                        <div class="project-buttons">
+                            <a href="https://e-commerce-mr-frank.vercel.app/" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-eye"></i> Demo
+                            </a>
+                            <a href="https://github.com/mrfrank-ofc/E-Commerce" class="btn btn-outline" target="_blank">
+                                <i class="fas fa-code"></i> Source
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chatify -->
+                <div class="glass project-card fade-in">
+                    <div class="project-image">
+                        <img src="https://files.catbox.moe/jp18e9.jpg" alt="Chatify">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tech">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
+                        </div>
+                        <h3 class="project-title">Chatify</h3>
+                        <p class="project-description">A real-time chat application built with Socket.io and React, enabling users to send messages, images, and emojis seamlessly.</p>
+                        <div class="project-buttons">
+                            <a href="https://chatify-test.onrender.com" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-eye"></i> Demo
+                            </a>
+                            <a href="https://github.com/mrfrank-ofc/chatify" class="btn btn-outline" target="_blank">
+                                <i class="fas fa-code"></i> Source
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REST APIs -->
+                <div class="glass project-card fade-in">
+                    <div class="project-image">
+                        <img src="https://files.catbox.moe/1ufuke.jpg" alt="REST APIs">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tech">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
+                        </div>
+                        <h3 class="project-title">REST APIs</h3>
+                        <p class="project-description">A collection of free, unlimited-request APIs for developers, built with Node.js and Express, offering various utilities and data endpoints.</p>
+                        <div class="project-buttons">
+                            <a href="https://tinyurl.com/subzero-api" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-eye"></i> Demo
+                            </a>
+                            <a href="https://tinyurl.com/mrfrank-unavailable" class="btn btn-outline" target="_blank">
+                                <i class="fas fa-code"></i> Source
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dev Portfolio -->
+                <div class="glass project-card fade-in">
+                    <div class="project-image">
+                        <img src="https://files.catbox.moe/omk23i.jpg" alt="Dev Portfolio">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tech">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
+                        </div>
+                        <h3 class="project-title">Dev Portfolio</h3>
+                        <p class="project-description">A modern, responsive portfolio website showcasing my skills, projects, and achievements, built with Tailwind CSS and JavaScript.</p>
+                        <div class="project-buttons">
+                            <a href="https://darrel-mucheri.vercel.app" class="btn btn-primary" target="_blank">
+                                <i class="fas fa-eye"></i> Demo
+                                                        </a>
+                        <a href="https://github.com/mrfrank-ofc/Darrell-s-Portfolio" class="btn btn-outline" target="_blank">
+                            <i class="fas fa-code"></i> Source
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-50">
+            <a href="/projects" class="btn btn-primary">
+                <i class="fas fa-rocket"></i> View More Projects
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Achievements Section -->
+<section id="achievements" class="bg-light">
+    <div class="container">
+        <h2 class="section-title">Achievements</h2>
+        <div class="achievements-grid">
+            <div class="glass achievement-card fade-in">
+                <div class="achievement-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>Full Stack School Web</h3>
+                <p>Successfully created a full stack school website, handling both the frontend and backend. The website is fully functional, providing users with a smooth experience for accessing school information.</p>
+            </div>
+            <div class="glass achievement-card fade-in">
+                <div class="achievement-icon">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h3>WhatsApp Multitask Chatbot</h3>
+                <p>Built a powerful WhatsApp chatbot using the Baileys library, capable of performing various tasks. The bot can automate tasks, answer queries, and provide useful functions to users through WhatsApp.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <h2 class="section-title">Contact Me</h2>
+        <div class="glass contact-form fade-in">
+            <form id="contactForm" action="https://formspree.io/f/mjkykgzp" method="POST">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a href="https://github.com/mrfrank-ofc" target="_blank" class="social-icon">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/darrell-mucheri" target="_blank" class="social-icon">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://twitter.com/mrfrankofc" target="_blank" class="social-icon">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://instagram.com/mrfrankofc" target="_blank" class="social-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+        <p class="copyright">&copy; 2025 Darrell Mucheri. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // Initialize theme
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    
+    // Check for saved theme preference
+    if (localStorage.getItem('theme') === 'light') {
+        body.classList.add('light-mode');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+    
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-mode');
+        if (body.classList.contains('light-mode')) {
+            localStorage.setItem('theme', 'light');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            localStorage.setItem('theme', 'dark');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+    });
+
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    });
+    
+    closeMenu.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = 'auto';
+    });
+    
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = 'auto';
+        });
+    });
+
+    // Typing effect
+    const typingText = document.getElementById('typing-text');
+    const messages = ["Hi there!", "My Name Is Darrell M", "A Half Stack Developer"];
+    let messageIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    
+    function type() {
+        const currentMessage = messages[messageIndex];
+        
+        if (isDeleting) {
+            charIndex--;
+        } else {
+            charIndex++;
+        }
+        
+        typingText.textContent = currentMessage.substring(0, charIndex);
+        
+        let speed = isDeleting ? 50 : 100;
+        
+        if (!isDeleting && charIndex === currentMessage.length) {
+            speed = 1500;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            messageIndex = (messageIndex + 1) % messages.length;
+            speed = 500;
+        }
+        
+        setTimeout(type, speed);
+    }
+    
+    // Start typing effect
+    type();
+
+    // Animate elements on scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    function checkScroll() {
+        fadeElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementBottom = element.getBoundingClientRect().bottom;
+            const isVisible = (elementTop < window.innerHeight - 100) && (elementBottom > 0);
+            
+            if (isVisible) {
+                element.classList.add('visible');
+            }
+        });
+    }
+    
+    // Initial check
+    checkScroll();
+    
+    // Check on scroll
+    window.addEventListener('scroll', checkScroll);
+
+    // Animate skill bars
+    const skillBars = document.querySelectorAll('.skill-progress');
+    const skillPercentages = document.querySelectorAll('.skill-percent');
+    
+    function animateSkillBars() {
+        skillBars.forEach((bar, index) => {
+            const percent = bar.getAttribute('data-percent');
+            let width = 0;
+            const targetWidth = parseInt(percent);
+            const interval = setInterval(() => {
+                if (width >= targetWidth) {
+                    clearInterval(interval);
+                } else {
+                    width++;
+                    bar.style.width = width + '%';
+                    skillPercentages[index].textContent = width + '%';
+                }
+            }, 20);
+        });
+    }
+    
+    // Use Intersection Observer to trigger skill bar animation
+    const skillsSection = document.getElementById('skills');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateSkillBars();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    observer.observe(skillsSection);
+
+    // Form submission
+    const contactForm = document.getElementById('contactForm');
+    
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(contactForm);
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        
+        // Show loading state
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Success message
+                alert('Message sent successfully! I will get back to you soon.');
+                contactForm.reset();
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            alert('There was an error sending your message. Please try again.');
+        } finally {
+            // Reset button state
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>
