@@ -56,8 +56,12 @@ app.get('/education', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'education.html'));
 });
 
-// Route for transactions page
+// Route for transactions/donations page
 app.get('/transactions', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'transactions.html'));
+});
+
+app.get('/donations', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'transactions.html'));
 });
 
