@@ -4,19 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Darrell Mucheri | Developer & Programmer</title>
+    <title>Darrell Mucheri | Full Stack Developer</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇿🇼</text></svg>">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --primary: #89CFF0;
-            --secondary: #B0E0E6;
-            --dark: #0F172A;
-            --light: #F8FAFC;
-            --glass: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --dark-glass: rgba(15, 23, 42, 0.8);
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
         }
 
         * {
@@ -25,40 +30,16 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--dark);
             color: var(--light);
-            min-height: 100vh;
             overflow-x: hidden;
-            transition: background 0.5s ease, color 0.3s ease;
-        }
-
-        body.light-mode {
-            background: linear-gradient(135deg, #E0F7FA 0%, #B3E5FC 100%);
-            color: var(--dark);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Glassmorphism components */
-        .glass {
-            background: var(--glass);
-            backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border-radius: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .glass:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            line-height: 1.6;
         }
 
         /* Navigation */
@@ -68,71 +49,69 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            padding: 20px 0;
+            padding: 1.5rem 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 1rem 0;
+            background: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
 
         .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 2.5rem;
+            align-items: center;
         }
 
         .nav-links a {
-            color: inherit;
+            color: var(--light);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .theme-toggle {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .theme-toggle:hover {
-            transform: rotate(180deg);
-            box-shadow: 0 0 20px rgba(137, 207, 240, 0.6);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-        }
-
-        .mobile-menu-btn span {
-            width: 30px;
-            height: 3px;
-            background: var(--light);
-            border-radius: 3px;
-            transition: all 0.3s ease;
+            color: #fff;
         }
 
         /* Hero Section */
@@ -140,261 +119,260 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 80px;
+            justify-content: center;
             position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
         }
 
         .hero-content {
-            text-align: center;
-            max-width: 800px;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero-text .description {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .hero-image {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            border: 4px solid rgba(137, 207, 240, 0.3);
-            margin: 0 auto 30px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            animation: float 6s ease-in-out infinite;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .hero-image img {
+        .hero-image-wrapper {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            padding: 6px;
+            animation: rotate 20s linear infinite;
+            position: relative;
+        }
+
+        .hero-image-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 6px solid var(--dark);
+        }
+
+        .hero-image-inner img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 5px 15px rgba(137, 207, 240, 0.4));
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        .hero-subtitle {
-            font-size: 1.5rem;
-            opacity: 0.9;
-            margin-bottom: 40px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            box-shadow: 0 4px 15px rgba(137, 207, 240, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(137, 207, 240, 0.6);
-        }
-
-        .btn-outline {
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-outline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: all 0.4s ease;
-            z-index: -1;
-        }
-
-        .btn-outline:hover::before {
-            left: 0;
-        }
-
-        .btn-outline:hover {
-            color: white;
-        }
-
-        /* Sections */
+        /* Section Styles */
         section {
-            padding: 80px 0;
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .about-card {
-            padding: 30px;
-        }
-
-        .about-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: rgba(137, 207, 240, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .about-icon i {
-            font-size: 30px;
-            color: var(--primary);
-        }
-
-        .about-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        .about-card p {
-            line-height: 1.6;
-            opacity: 0.9;
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
         }
 
         /* Skills Section */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
 
         .skill-card {
-            padding: 25px;
-            position: relative;
-        }
-
-        .skill-card img {
-            width: 40px;
-            height: 40px;
-            position: absolute;
-            top: 25px;
-            right: 25px;
-        }
-
-        .skill-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        .skill-bar {
-            background: rgba(137, 207, 240, 0.2);
-            border-radius: 10px;
-            overflow: hidden;
-            height: 12px;
-            margin-top: 15px;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            width: 0;
-            border-radius: 10px;
-            transition: width 1.5s ease;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .skill-progress::after {
+        .skill-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            bottom: 0;
-            right: 0;
-            background-image: linear-gradient(
-                -45deg,
-                rgba(255, 255, 255, 0.2) 25%,
-                transparent 25%,
-                transparent 50%,
-                rgba(255, 255, 255, 0.2) 50%,
-                rgba(255, 255, 255, 0.2) 75%,
-                transparent 75%,
-                transparent
-            );
-            z-index: 1;
-            background-size: 20px 20px;
-            animation: move 2s linear infinite;
-            border-radius: 10px;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
-        .skill-percent {
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-top: 8px;
-            text-align: right;
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .skill-progress {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .skill-progress-bar {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 10px;
+            transition: width 1.5s ease;
         }
 
         /* Projects Section */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
         }
 
         .project-card {
-            padding: 0;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
         }
 
         .project-image {
-            height: 200px;
+            width: 100%;
+            height: 250px;
             overflow: hidden;
+            position: relative;
         }
 
         .project-image img {
@@ -405,120 +383,136 @@
         }
 
         .project-card:hover .project-image img {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .project-content {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
         }
 
         .project-tech {
             display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
         }
 
-        .project-tech img {
-            width: 24px;
-            height: 24px;
+        .tech-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
         }
 
-        .project-title {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .project-description {
-            margin-bottom: 20px;
-            opacity: 0.9;
-            flex-grow: 1;
-        }
-
-        .project-buttons {
+        .project-links {
             display: flex;
-            gap: 15px;
+            gap: 1rem;
         }
 
-        .project-buttons a {
+        .project-links a {
             flex: 1;
             text-align: center;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-        }
-
-        /* Achievements Section */
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .achievement-card {
-            padding: 30px;
-        }
-
-        .achievement-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: rgba(137, 207, 240, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .achievement-icon i {
-            font-size: 30px;
-            color: var(--primary);
-        }
-
-        .achievement-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        .achievement-card p {
-            line-height: 1.6;
-            opacity: 0.9;
         }
 
         /* Contact Section */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details p {
+            color: var(--gray);
+        }
+
         .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 15px;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            background: transparent;
-            border: 1px solid rgba(137, 207, 240, 0.3);
-            color: inherit;
+            color: var(--light);
             font-family: inherit;
+            font-size: 1rem;
             transition: all 0.3s ease;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
+            background: rgba(255, 255, 255, 0.08);
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(137, 207, 240, 0.3);
         }
 
         .form-group textarea {
@@ -526,180 +520,150 @@
             resize: vertical;
         }
 
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            border-radius: 12px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(137, 207, 240, 0.6);
-        }
-
         /* Footer */
         footer {
-            padding: 50px 0 30px;
-            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
         }
 
         .social-links {
             display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-bottom: 30px;
+            gap: 1rem;
         }
 
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .social-icon:hover {
-            transform: translateY(-5px);
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            box-shadow: 0 5px 15px rgba(137, 207, 240, 0.4);
+        .social-link:hover {
+            background: var(--gradient-1);
+            border-color: transparent;
+            transform: translateY(-3px);
         }
 
-        .copyright {
-            opacity: 0.8;
-            font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-
-        @keyframes move {
-            0% { background-position: 0 0; }
-            100% { background-position: 20px 20px; }
-        }
-
-        /* Light mode adjustments */
-        .light-mode .glass {
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .light-mode .social-icon {
-            background: rgba(255, 255, 255, 0.2);
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--gray);
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
 
-            .mobile-menu-btn {
-                display: flex;
-            }
-
-            .hero-title {
+            .hero-text h1 {
                 font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
             }
 
             .section-title {
                 font-size: 2rem;
             }
 
-            .projects-grid {
+            .projects-grid,
+            .skills-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
             }
         }
 
-        /* Mobile menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-menu .nav-links {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .mobile-menu .nav-links a {
-            font-size: 1.5rem;
-        }
-
-        .close-menu {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            font-size: 2rem;
-            background: none;
-            border: none;
-            color: inherit;
-            cursor: pointer;
-        }
-
-        /* Utility classes */
-        .text-center {
-            text-align: center;
-        }
-
-        .mb-30 {
-            margin-bottom: 30px;
-        }
-
-        /* Animation classes */
         .fade-in {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
         }
 
         .fade-in.visible {
@@ -711,156 +675,93 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="container nav-container">
-            <div class="logo">Darrell M</div>
+        <div class="nav-container">
+            <div class="logo">Darrell M.</div>
             <div class="nav-links">
-                <a href="#about">About</a>
+                <a href="#home">Home</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Projects</a>
-                <a href="#achievements">Achievements</a>
                 <a href="#contact">Contact</a>
-            </div>
-            <div class="theme-toggle" id="themeToggle">
-                <i class="fas fa-moon"></i>
-            </div>
-            <div class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="close-menu" id="closeMenu">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="nav-links">
-            <a href="#about" class="mobile-nav-link">About</a>
-            <a href="#skills" class="mobile-nav-link">Skills</a>
-            <a href="#projects" class="mobile-nav-link">Projects</a>
-            <a href="#achievements" class="mobile-nav-link">Achievements</a>
-            <a href="#contact" class="mobile-nav-link">Contact</a>
-            <a href="https://github.com/mrfrank-ofc" target="_blank" class="mobile-nav-link">GitHub</a>
-        </div>
-    </div>
-
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <div class="hero-image">
-                <img src="https://i.postimg.cc/XYwmpCxk/subzero-bot.jpg" alt="Darrell Mucheri">
-            </div>
-            <h1 class="hero-title"><span id="typing-text"></span></h1>
-            <p class="hero-subtitle">Developer & Programmer</p>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">
-                    <i class="fas fa-rocket"></i> View Projects
-                </a>
-                <a href="#contact" class="btn btn-outline">
-                    <i class="fas fa-paper-plane"></i> Contact Me
-                </a>
-            </div>
-            <div class="mt-30">
-                <a href="https://github.com/mrfrank-ofc/DARRELL-CV/archive/62ce215051d52786068e6e11f3faeb346d2d2977.zip" download class="btn btn-outline">
-                    <i class="fas fa-download"></i> Download CV
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-grid">
-                <div class="glass about-card fade-in">
-                    <div class="about-icon">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <h3>Who Am I?</h3>
-                    <p>I'm Darrell Mucheri, a passionate frontend developer from Zimbabwe. I specialize in creating modern, responsive, and user-friendly web applications. My goal is to solve real-world problems through clean and efficient code.</p>
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Full Stack Developer & Creative Problem Solver</h1>
+                <p class="subtitle">Darrell Mucheri</p>
+                <p class="description">Crafting exceptional digital experiences with modern technologies. Specialized in building responsive web applications and innovative solutions.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i data-lucide="rocket"></i> View Projects
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i data-lucide="mail"></i> Get In Touch
+                    </a>
                 </div>
-                <div class="glass about-card fade-in">
-                    <div class="about-icon">
-                        <i class="fas fa-eye"></i>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-wrapper">
+                    <div class="hero-image-inner">
+                        <img src="https://i.postimg.cc/XYwmpCxk/subzero-bot.jpg" alt="Darrell Mucheri">
                     </div>
-                    <h3>My Vision</h3>
-                    <p>To revolutionize the digital landscape by building innovative solutions that enhance user experiences and drive business growth. I believe in continuous learning and pushing the boundaries of what's possible.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="bg-light">
+    <section id="skills">
         <div class="container">
-            <h2 class="section-title">My Skills</h2>
+            <div class="section-header">
+                <h2 class="section-title">Technical Expertise</h2>
+                <p class="section-subtitle">Technologies I work with to build amazing products</p>
+            </div>
             <div class="skills-grid">
-                <div class="glass skill-card fade-in">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML">
-                    <h3>HTML</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-percent="95%"></div>
+                <div class="skill-card fade-in">
+                    <img class="skill-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML">
+                    <h3 class="skill-name">HTML5</h3>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 95%"></div>
                     </div>
-                    <div class="skill-percent">0%</div>
                 </div>
-                <div class="glass skill-card fade-in">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS">
-                    <h3>CSS</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-percent="79%"></div>
+                <div class="skill-card fade-in">
+                    <img class="skill-icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS">
+                    <h3 class="skill-name">CSS3</h3>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 90%"></div>
                     </div>
-                    <div class="skill-percent">0%</div>
                 </div>
-                <div class="glass skill-card fade-in">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
-                    <h3>JavaScript</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-percent="85%"></div>
+                <div class="skill-card fade-in">
+                    <img class="skill-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
+                    <h3 class="skill-name">JavaScript</h3>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 85%"></div>
                     </div>
-                    <div class="skill-percent">0%</div>
                 </div>
-                <div class="glass skill-card fade-in">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React">
-                    <h3>React</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-percent="80%"></div>
+                <div class="skill-card fade-in">
+                    <img class="skill-icon" src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React">
+                    <h3 class="skill-name">React</h3>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 80%"></div>
                     </div>
-                    <div class="skill-percent">0%</div>
                 </div>
-                <div class="glass skill-card fade-in">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
-                    <h3>Node.js</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-percent="75%"></div>
+                <div class="skill-card fade-in">
+                    <img class="skill-icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
+                    <h3 class="skill-name">Node.js</h3>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 75%"></div>
                     </div>
-                    <div class="skill-percent">0%</div>
                 </div>
-                <div class="glass skill-card fade-in">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python">
-                    <h3>Python</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-percent="70%"></div>
+                <div class="skill-card fade-in">
+                    <img class="skill-icon" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python">
+                    <h3 class="skill-name">Python</h3>
+                    <div class="skill-progress">
+                        <div class="skill-progress-bar" style="width: 70%"></div>
                     </div>
-                    <div class="skill-percent">0%</div>
-                </div>
-                <div class="glass skill-card fade-in">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="Tailwind CSS">
-                    <h3>Tailwind CSS</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-percent="85%"></div>
-                    </div>
-                    <div class="skill-percent">0%</div>
-                </div>
-                <div class="glass skill-card fade-in">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg" alt="Bootstrap">
-                    <h3>Bootstrap</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-percent="80%"></div>
-                    </div>
-                    <div class="skill-percent">0%</div>
                 </div>
             </div>
         </div>
@@ -869,414 +770,236 @@
     <!-- Projects Section -->
     <section id="projects">
         <div class="container">
-            <h2 class="section-title">My Projects</h2>
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Explore my latest work and creations</p>
+            </div>
             <div class="projects-grid">
-                <!-- Subzero Nodes -->
-                <div class="glass project-card fade-in">
+                <div class="project-card fade-in">
                     <div class="project-image">
                         <img src="https://files.catbox.moe/sxseo0.jpg" alt="Subzero Nodes">
                     </div>
                     <div class="project-content">
-                        <div class="project-tech">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML">
-                            <img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" alt="Docker">
-                        </div>
                         <h3 class="project-title">Subzero Nodes</h3>
-                        <p class="project-description">Premium WhatsApp bot hosting service with 24/7 uptime, advanced features, and easy deployment for your WhatsApp automation needs.</p>
-                        <div class="project-buttons">
+                        <p class="project-description">Premium WhatsApp bot hosting service with 24/7 uptime and advanced features.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
                             <a href="https://subzeronodes.gleeze.com" class="btn btn-primary" target="_blank">
-                                <i class="fas fa-globe"></i> Visit Site
+                                <i data-lucide="external-link"></i> Visit
                             </a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Subzero AI -->
-                <div class="glass project-card fade-in">
+                <div class="project-card fade-in">
                     <div class="project-image">
-                        <img src="https://files.catbox.moe/sxseo0.jpg" alt="Subzero AI">
+                        <img src="https://files.catbox.moe/43b9ax.jpg" alt="E-Commerce">
                     </div>
                     <div class="project-content">
-                        <div class="project-tech">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML">
-                            <img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" alt="Docker">
-                        </div>
-                        <h3 class="project-title">Subzero AI</h3>
-                        <p class="project-description">A cutting-edge WhatsApp bot designed to automate tasks, provide real-time updates, and enhance user interactions with AI-powered features.</p>
-                        <div class="project-buttons">
-                            <a href="https://tinyurl.com/subzero-md" class="btn btn-primary" target="_blank">
-                                <i class="fas fa-eye"></i> Demo
-                            </a>
-                            <a href="https://github.com/mrfrankofcc/SUBZERO-MD" class="btn btn-outline" target="_blank">
-                                <i class="fas fa-code"></i> Source
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- E-Commerce Store -->
-                <div class="glass project-card fade-in">
-                    <div class="project-image">
-                        <img src="https://files.catbox.moe/43b9ax.jpg" alt="E-Commerce Store">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tech">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML">
-                        </div>
                         <h3 class="project-title">E-Commerce Store</h3>
-                        <p class="project-description">A fully functional online store built with React and Node.js, featuring product listings, a shopping cart, and secure payment integration.</p>
-                        <div class="project-buttons">
+                        <p class="project-description">Fully functional online store with shopping cart and payment integration.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <div class="project-links">
                             <a href="https://e-commerce-mr-frank.vercel.app/" class="btn btn-primary" target="_blank">
-                                <i class="fas fa-eye"></i> Demo
+                                <i data-lucide="external-link"></i> Demo
                             </a>
-                            <a href="https://github.com/mrfrank-ofc/E-Commerce" class="btn btn-outline" target="_blank">
-                                <i class="fas fa-code"></i> Source
+                            <a href="https://github.com/mrfrank-ofc/E-Commerce" class="btn btn-secondary" target="_blank">
+                                <i data-lucide="github"></i> Code
                             </a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Chatify -->
-                <div class="glass project-card fade-in">
+                <div class="project-card fade-in">
                     <div class="project-image">
                         <img src="https://files.catbox.moe/jp18e9.jpg" alt="Chatify">
                     </div>
                     <div class="project-content">
-                        <div class="project-tech">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
-                        </div>
                         <h3 class="project-title">Chatify</h3>
-                        <p class="project-description">A real-time chat application built with Socket.io and React, enabling users to send messages, images, and emojis seamlessly.</p>
-                        <div class="project-buttons">
+                        <p class="project-description">Real-time chat application with Socket.io and modern UI design.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">Express</span>
+                        </div>
+                        <div class="project-links">
                             <a href="https://chatify-test.onrender.com" class="btn btn-primary" target="_blank">
-                                <i class="fas fa-eye"></i> Demo
+                                <i data-lucide="external-link"></i> Demo
                             </a>
-                            <a href="https://github.com/mrfrank-ofc/chatify" class="btn btn-outline" target="_blank">
-                                <i class="fas fa-code"></i> Source
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- REST APIs -->
-                <div class="glass project-card fade-in">
-                    <div class="project-image">
-                        <img src="https://files.catbox.moe/1ufuke.jpg" alt="REST APIs">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tech">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
-                        </div>
-                        <h3 class="project-title">REST APIs</h3>
-                        <p class="project-description">A collection of free, unlimited-request APIs for developers, built with Node.js and Express, offering various utilities and data endpoints.</p>
-                        <div class="project-buttons">
-                            <a href="https://tinyurl.com/subzero-api" class="btn btn-primary" target="_blank">
-                                <i class="fas fa-eye"></i> Demo
-                            </a>
-                            <a href="https://tinyurl.com/mrfrank-unavailable" class="btn btn-outline" target="_blank">
-                                <i class="fas fa-code"></i> Source
+                            <a href="https://github.com/mrfrank-ofc/chatify" class="btn btn-secondary" target="_blank">
+                                <i data-lucide="github"></i> Code
                             </a>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Dev Portfolio -->
-                <div class="glass project-card fade-in">
-                    <div class="project-image">
-                        <img src="https://files.catbox.moe/omk23i.jpg" alt="Dev Portfolio">
-                    </div>
-                    <div class="project-content">
-                        <div class="project-tech">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript">
-                        </div>
-                        <h3 class="project-title">Dev Portfolio</h3>
-                        <p class="project-description">A modern, responsive portfolio website showcasing my skills, projects, and achievements, built with Tailwind CSS and JavaScript.</p>
-                        <div class="project-buttons">
-                            <a href="https://darrel-mucheri.vercel.app" class="btn btn-primary" target="_blank">
-                                <i class="fas fa-eye"></i> Demo
-                                                        </a>
-                        <a href="https://github.com/mrfrank-ofc/Darrell-s-Portfolio" class="btn btn-outline" target="_blank">
-                            <i class="fas fa-code"></i> Source
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="text-center mt-50">
-            <a href="/projects" class="btn btn-primary">
-                <i class="fas fa-rocket"></i> View More Projects
-            </a>
-        </div>
-    </div>
-</section>
+    </section>
 
-<!-- Achievements Section -->
-<section id="achievements" class="bg-light">
-    <div class="container">
-        <h2 class="section-title">Achievements</h2>
-        <div class="achievements-grid">
-            <div class="glass achievement-card fade-in">
-                <div class="achievement-icon">
-                    <i class="fas fa-trophy"></i>
-                </div>
-                <h3>Full Stack School Web</h3>
-                <p>Successfully created a full stack school website, handling both the frontend and backend. The website is fully functional, providing users with a smooth experience for accessing school information.</p>
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's collaborate on your next project</p>
             </div>
-            <div class="glass achievement-card fade-in">
-                <div class="achievement-icon">
-                    <i class="fas fa-medal"></i>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item fade-in">
+                        <div class="contact-icon">
+                            <i data-lucide="map-pin" color="white"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Location</h3>
+                            <p>Chitungwiza, Harare<br>Zimbabwe</p>
+                        </div>
+                    </div>
+                    <div class="contact-item fade-in">
+                        <div class="contact-icon">
+                            <i data-lucide="phone" color="white"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p>+263 719 647 303</p>
+                        </div>
+                    </div>
+                    <div class="contact-item fade-in">
+                        <div class="contact-icon">
+                            <i data-lucide="mail" color="white"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>darrelmucheri@gmail.com</p>
+                        </div>
+                    </div>
                 </div>
-                <h3>WhatsApp Multitask Chatbot</h3>
-                <p>Built a powerful WhatsApp chatbot using the Baileys library, capable of performing various tasks. The bot can automate tasks, answer queries, and provide useful functions to users through WhatsApp.</p>
+                <div class="contact-form fade-in">
+                    <form action="https://formspree.io/f/mjkykgzp" method="POST">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Your Email</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i data-lucide="send"></i> Send Message
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Contact Section -->
-<section id="contact">
-    <div class="container">
-        <h2 class="section-title">Contact Me</h2>
-        <div class="glass contact-form fade-in">
-            <form id="contactForm" action="https://formspree.io/f/mjkykgzp" method="POST">
-                <div class="form-group">
-                    <input type="text" name="name" placeholder="Your Name" required>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Darrell Mucheri</h3>
+                <p>Full Stack Developer passionate about creating exceptional digital experiences and solving complex problems with elegant solutions.</p>
+                <div class="social-links" style="margin-top: 1.5rem;">
+                    <a href="https://github.com/mrfrank-ofc" target="_blank" class="social-link">
+                        <i data-lucide="github" size="20" color="white"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/darrell-mucheri" target="_blank" class="social-link">
+                        <i data-lucide="linkedin" size="20" color="white"></i>
+                    </a>
+                    <a href="https://twitter.com/mrfrankofc" target="_blank" class="social-link">
+                        <i data-lucide="twitter" size="20" color="white"></i>
+                    </a>
+                    <a href="https://instagram.com/mrfrankofc" target="_blank" class="social-link">
+                        <i data-lucide="instagram" size="20" color="white"></i>
+                    </a>
                 </div>
-                <div class="form-group">
-                    <input type="email" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
                 </div>
-                <div class="form-group">
-                    <textarea name="message" placeholder="Your Message" required></textarea>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <div class="footer-links">
+                    <a href="#">Web Development</a>
+                    <a href="#">UI/UX Design</a>
+                    <a href="#">API Development</a>
+                    <a href="#">Consulting</a>
                 </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <div class="footer-links">
+                    <a href="#">Blog</a>
+                    <a href="#">Portfolio</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">Support</a>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="social-links">
-            <a href="https://github.com/mrfrank-ofc" target="_blank" class="social-icon">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://linkedin.com/in/darrell-mucheri" target="_blank" class="social-icon">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="https://twitter.com/mrfrankofc" target="_blank" class="social-icon">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="https://instagram.com/mrfrankofc" target="_blank" class="social-icon">
-                <i class="fab fa-instagram"></i>
-            </a>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Darrell Mucheri. All rights reserved.</p>
+            <p>Designed & Built with <i data-lucide="heart" size="16" color="#ec4899"></i> in Zimbabwe</p>
         </div>
-        <p class="copyright">&copy; 2025 Darrell Mucheri. All rights reserved.</p>
-    </div>
-</footer>
+    </footer>
 
-<script>
-    // Initialize theme
-    const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
-    
-    // Check for saved theme preference
-    if (localStorage.getItem('theme') === 'light') {
-        body.classList.add('light-mode');
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    }
-    
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('light-mode');
-        if (body.classList.contains('light-mode')) {
-            localStorage.setItem('theme', 'light');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        } else {
-            localStorage.setItem('theme', 'dark');
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        }
-    });
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
 
-    // Mobile menu functionality
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const closeMenu = document.getElementById('closeMenu');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('open');
-        document.body.style.overflow = 'hidden';
-    });
-    
-    closeMenu.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = 'auto';
-    });
-    
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-            document.body.style.overflow = 'auto';
-        });
-    });
-
-    // Typing effect
-    const typingText = document.getElementById('typing-text');
-    const messages = ["Hi there!", "My Name Is Darrell M", "A Half Stack Developer"];
-    let messageIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    
-    function type() {
-        const currentMessage = messages[messageIndex];
-        
-        if (isDeleting) {
-            charIndex--;
-        } else {
-            charIndex++;
-        }
-        
-        typingText.textContent = currentMessage.substring(0, charIndex);
-        
-        let speed = isDeleting ? 50 : 100;
-        
-        if (!isDeleting && charIndex === currentMessage.length) {
-            speed = 1500;
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            messageIndex = (messageIndex + 1) % messages.length;
-            speed = 500;
-        }
-        
-        setTimeout(type, speed);
-    }
-    
-    // Start typing effect
-    type();
-
-    // Animate elements on scroll
-    const fadeElements = document.querySelectorAll('.fade-in');
-    
-    function checkScroll() {
-        fadeElements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const elementBottom = element.getBoundingClientRect().bottom;
-            const isVisible = (elementTop < window.innerHeight - 100) && (elementBottom > 0);
-            
-            if (isVisible) {
-                element.classList.add('visible');
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
             }
         });
-    }
-    
-    // Initial check
-    checkScroll();
-    
-    // Check on scroll
-    window.addEventListener('scroll', checkScroll);
 
-    // Animate skill bars
-    const skillBars = document.querySelectorAll('.skill-progress');
-    const skillPercentages = document.querySelectorAll('.skill-percent');
-    
-    function animateSkillBars() {
-        skillBars.forEach((bar, index) => {
-            const percent = bar.getAttribute('data-percent');
-            let width = 0;
-            const targetWidth = parseInt(percent);
-            const interval = setInterval(() => {
-                if (width >= targetWidth) {
-                    clearInterval(interval);
-                } else {
-                    width++;
-                    bar.style.width = width + '%';
-                    skillPercentages[index].textContent = width + '%';
-                }
-            }, 20);
-        });
-    }
-    
-    // Use Intersection Observer to trigger skill bar animation
-    const skillsSection = document.getElementById('skills');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateSkillBars();
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    observer.observe(skillsSection);
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-    // Form submission
-    const contactForm = document.getElementById('contactForm');
-    
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(contactForm);
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        
-        // Show loading state
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
-        
-        try {
-            const response = await fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
-            
-            if (response.ok) {
-                // Success message
-                alert('Message sent successfully! I will get back to you soon.');
-                contactForm.reset();
-            } else {
-                throw new Error('Form submission failed');
-            }
-        } catch (error) {
-            alert('There was an error sending your message. Please try again.');
-        } finally {
-            // Reset button state
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }
-    });
+        }, observerOptions);
 
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
