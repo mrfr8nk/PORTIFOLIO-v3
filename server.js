@@ -51,6 +51,16 @@ app.get('/testimonials', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'testimonials.html'));
 });
 
+// Route for education page
+app.get('/education', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'education.html'));
+});
+
+// Route for transactions page
+app.get('/transactions', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'transactions.html'));
+});
+
 // Route for Subzero Nodes project page
 app.get('/subzero-nodes', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'subzero-nodes.html'));

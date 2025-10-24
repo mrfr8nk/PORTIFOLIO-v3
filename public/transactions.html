@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions | Darrell Mucheri</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇿🇼</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .transactions-section {
+            padding: 10rem 2rem 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .payment-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+        }
+
+        .payment-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .payment-method {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .payment-details {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .payment-info {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            color: var(--light);
+            word-break: break-all;
+        }
+
+        .info-note {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .info-note i {
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Darrell M.</div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/education">Education</a>
+                <a href="/#skills">Skills</a>
+                <a href="/#projects">Projects</a>
+                <a href="/transactions">Transactions</a>
+                <a href="/#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="transactions-section">
+        <div class="section-header">
+            <h1 class="section-title">Payment Methods</h1>
+            <p style="color: var(--gray); font-size: 1.2rem;">Secure and convenient ways to work with me</p>
+        </div>
+
+        <div class="payment-grid">
+            <div class="payment-card">
+                <div class="payment-icon">
+                    <i data-lucide="smartphone" size="40" color="white"></i>
+                </div>
+                <h3 class="payment-method">EcoCash</h3>
+                <p class="payment-details">Mobile money transfer via EcoCash Zimbabwe</p>
+                <div class="payment-info">+263 719 647 303</div>
+            </div>
+
+            <div class="payment-card">
+                <div class="payment-icon">
+                    <i data-lucide="building" size="40" color="white"></i>
+                </div>
+                <h3 class="payment-method">Bank Transfer</h3>
+                <p class="payment-details">Direct bank deposit or transfer</p>
+                <div class="payment-info">Contact for bank details</div>
+            </div>
+
+            <div class="payment-card">
+                <div class="payment-icon">
+                    <i data-lucide="credit-card" size="40" color="white"></i>
+                </div>
+                <h3 class="payment-method">PayPal</h3>
+                <p class="payment-details">International payments via PayPal</p>
+                <div class="payment-info">darrelmucheri@gmail.com</div>
+            </div>
+
+            <div class="payment-card">
+                <div class="payment-icon">
+                    <i data-lucide="dollar-sign" size="40" color="white"></i>
+                </div>
+                <h3 class="payment-method">USD Cash</h3>
+                <p class="payment-details">Cash payment for local clients</p>
+                <div class="payment-info">In-person meetings</div>
+            </div>
+        </div>
+
+        <div class="info-note">
+            <i data-lucide="info" size="24" color="#10b981"></i>
+            <div>
+                <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Payment Information</h4>
+                <p style="color: var(--gray);">
+                    All payments are processed securely. For project quotes and payment terms, please contact me via email or phone. I accept deposits for large projects and offer flexible payment plans for ongoing work.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
