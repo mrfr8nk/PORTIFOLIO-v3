@@ -1,6 +1,6 @@
 {
-  "name": "my-portfolio",
-  "version": "1.0.0",
+  "name": "darrells-portfolio",
+  "version": "1.0.2",
   "description": "Personal portfolio website",
   "main": "server.js",
   "scripts": {
